@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Loading...</title>
+
+<script>
+// 获取用户国家
+fetch("https://ipapi.co/json/")
+.then(res => res.json())
+.then(data => {
+
+    const country = data.country;
+
+    let targetPage = "story1.html";
+
+    // 国家判断（核心逻辑）
+    if (country === "US" || country === "CA" || country === "GB") {
+        targetPage = "us.html";   // 高价值流量 💰
+    } else if (country === "DE" || country === "FR") {
+        targetPage = "eu.html";
+    } else {
+        targetPage = "low.html";
+    }
+
+    // 延迟跳转（3秒）
+    setTimeout(() => {
+        window.location.href = targetPage;
+    }, 3000);
+
+});
+</script>
+
+</head>
+
+<body style="text-align:center; padding-top:80px; font-family:Arial;">
+
+<h2>🔍 Finding best content for you...</h2>
+<p>Please wait...</p>
+
+<!-- 广告 -->
+<script src="你的广告代码"></script>
+
+</body>
+</html>
