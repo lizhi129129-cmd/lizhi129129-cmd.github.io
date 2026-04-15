@@ -1,29 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Loading...</title>
-
 <script>
-// 获取用户国家
 fetch("https://ipapi.co/json/")
 .then(res => res.json())
 .then(data => {
 
     const country = data.country;
 
-    let targetPage = "story1.html";
+    let pages = [];
 
-    // 国家判断（核心逻辑）
+    // 🇺🇸 高价值国家
     if (country === "US" || country === "CA" || country === "GB") {
-        targetPage = "us.html";   // 高价值流量 💰
-    } else if (country === "DE" || country === "FR") {
-        targetPage = "eu.html";
-    } else {
-        targetPage = "low.html";
+        pages = ["story1.html","story2.html","story3.html"];
+    } 
+    // 🇪🇺 欧洲
+    else if (country === "DE" || country === "FR") {
+        pages = ["story4.html","story5.html","story6.html"];
+    } 
+    // 🌏 其他
+    else {
+        pages = ["story7.html","story8.html","story9.html"];
     }
 
-    // 延迟跳转（3秒）
+    // 随机选一个页面
+    const targetPage = pages[Math.floor(Math.random() * pages.length)];
+
     setTimeout(() => {
         window.location.href = targetPage;
     }, 3000);
